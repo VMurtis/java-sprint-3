@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Home - Meu App</title>
+    <!-- CSS separado -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+
+    <main class="hero">
+        <h1>Bem-vindo ao Meu App</h1>
+        <p class="lead">Uma página inicial simples com integração Thymeleaf. Faça login para continuar e acessar suas funcionalidades.</p>
+
+        <section style="margin-top:18px">
+            <div class="card">
+                <h3 style="margin:0 0 8px">Recursos</h3>
+                <ul style="margin:0;padding-left:18px;color:var(--muted)">
+                    <li>Acesso personalizado</li>
+                    <li>Dashboard responsivo</li>
+                    <li>Autenticação com Spring Security</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <aside>
+        <div class="card">
+            <div class="login-title">
+                <div class="logo-circle">MA</div>
+                <div>
+                    <div style="font-weight:700">Entrar na conta</div>
+                    <div class="small">Acesse seu painel pessoal</div>
+                </div>
+            </div>
+
+            <!-- Formulário Thymeleaf: envia para /login -->
+            <form th:action="@{/login}" method="post" th:object="${loginForm}">
+
+                <div>
+                    <label for="username">E-mail ou usuário</label>
+                    <input type="text" id="username" name="username" th:field="*{username}" placeholder="seu@exemplo.com" required />
+                </div>
+
+                <div>
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" th:field="*{password}" placeholder="••••••••" required />
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn">Entrar</button>
+                    <a th:href="@{/signup}" class="btn secondary">Criar conta</a>
+                </div>
+
+                <!-- Área clicável grande que também entra em /login com GET (apenas exemplo) -->
+                <a href="#" th:href="@{/login}" class="quick-login">Clique aqui para entrar rapidamente</a>
+
+                <p class="small" style="margin-top:8px">Esqueceu a senha? <a th:href="@{/forgot}">Recuperar</a></p>
+            </form>
+
+        </div>
+    </aside>
+
+</div>
+</body>
+</html>
